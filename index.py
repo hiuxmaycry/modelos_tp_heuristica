@@ -13,7 +13,7 @@ N = 1
 
 # Declaro los bancos. Considero 'O' como el inicial
 # Central                  O
-# Banco Portenio            A   
+# Banco Portenio           A   
 # Banco Del Plata          B
 # Banco De Los Andres      C
 # Banco Plural             D
@@ -34,3 +34,31 @@ DIST = np.matrix('0, 4, 8, 4, 1, 4, 4, 7, 2, 1, 6;4, 0, 4, 4, 8, 7, 4, 9, 7, 5, 
 
 print(DIST)
 
+dineroCamion = 0
+bancoActual = 'O'
+bancosVisitado = ['O']
+bancosSinVisitar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+
+def main( ):
+   print("Tp presentacion final modelos y optimizacion 1")    
+   while (len(bancosSinVisitar)>0):
+       elegirSiguienteCiudad()
+
+def elegirSiguienteCiudad():
+    min = null
+    for banco in BANCOS:
+        dineroDelBanco = MONTO[banco]
+        costoBanco = obtenerCostoDelBanco(banco,dineroDelBanco)
+
+def obtenerCostoDelBanco(banco,dineroDelBanco):
+    distancia = DIST[bancoActual][banco]
+    montoRestante = 0
+    
+def obtenerCostoTotal():
+    return 0
+
+def visitarCiudad(ciudad):
+    bancosSinVisitar.remove(ciudad)
+    bancosVisitados.append(ciudad)
+
+main()
