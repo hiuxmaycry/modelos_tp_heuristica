@@ -35,30 +35,46 @@ DIST = np.matrix('0, 4, 8, 4, 1, 4, 4, 7, 2, 1, 6;4, 0, 4, 4, 8, 7, 4, 9, 7, 5, 
 print(DIST)
 
 dineroCamion = 0
-bancoActual = 'O'
-bancosVisitado = ['O']
+
+bancosVisitados = ['O']
 bancosSinVisitar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
 def main( ):
-   print("Tp presentacion final modelos y optimizacion 1")    
-   while (len(bancosSinVisitar)>0):
-       elegirSiguienteCiudad()
+    print("Tp presentacion final modelos y optimizacion 1")    
+    bancoActual = 'O'
+    while (len(bancosSinVisitar)>0):
+        bancoElegido = elegirSiguienteCiudad(bancoActual)
+        visitarBanco(bancoElegido)
+        bancoActual = bancoElegido
+    print(bancosVisitados)
 
-def elegirSiguienteCiudad():
-    min = null
-    for banco in BANCOS:
-        dineroDelBanco = MONTO[banco]
-        costoBanco = obtenerCostoDelBanco(banco,dineroDelBanco)
+def elegirSiguienteCiudad(bancoActual):
+    costoMin = float('inf')
+    bancoMin = ''
+    for banco in bancosSinVisitar:
+        if (banco != bancoActual):
+            dineroDelBanco = MONTO[banco]
+            costoBanco = obtenerCostoDelBanco(bancoActual,banco,dineroDelBanco)
+            if (costoBanco < costoMin):
+                bancoMin = banco
+    return bancoMin
 
-def obtenerCostoDelBanco(banco,dineroDelBanco):
-    distancia = DIST[bancoActual][banco]
+def obtenerCostoDelBanco(bancoActual,banco,dineroDelBanco):
+    print(bancoActual + ' ' + banco)
+    distancia = obtenerDistancia(bancoActual,banco)
     montoRestante = 0
-    
-def obtenerCostoTotal():
-    return 0
+    return obtenerCostoTotal(distancia,montoRestante)
 
-def visitarCiudad(ciudad):
-    bancosSinVisitar.remove(ciudad)
-    bancosVisitados.append(ciudad)
+def obtenerDistancia(bancoActual,banco):
+    distFila = POS[bancoActual]
+    distColumna = POS[banco]
+    return (DIST[distFila,distColumna])
+
+def obtenerCostoTotal(distancia,montoRestante):
+    return (N*distancia+M*montoRestante)
+
+def visitarBanco(banco):
+    bancosSinVisitar.remove(banco)
+    bancosVisitados.append(banco)
 
 main()
