@@ -37,7 +37,14 @@ bancosSinVisitar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 costoTotalDelViaje = 0
 
 def main( ):
-    print("Tp presentacion final modelos y optimizacion 1\n")    
+    print("Tp presentacion final modelos y optimizacion 1\n")
+    aplicarHeuristicaDeConstruccion()
+    aplicarHeuristicaDeMejoramiento()
+
+def aplicarHeuristicaDeMejoramiento():
+    return 0
+
+def aplicarHeuristicaDeConstruccion():    
     bancoActual = 'O'
     dineroCamion = 0
     numeroDePaso = 1
@@ -51,10 +58,17 @@ def main( ):
         print('Banco Elegido: '+bancoActual)
         print('Dinero del Camion: '+str(dineroCamion)+ '\n')
         numeroDePaso += 1
+    agregarVueltaAlInicio(bancoActual)
     print('Camino obtenido:')        
     print(bancosVisitados)
     print('Costo total del viaje obtenido:')        
     print(costoTotalDelViaje)
+
+def agregarVueltaAlInicio(bancoActual):
+    global costoTotalDelViaje
+    bancosVisitados.append('O')
+    costo = obtenerDistancia(bancoActual,'O')
+    costoTotalDelViaje += costo
 
 #Actualiza el dinero que portara el camion al visitar un banco
 def actulizarDineroCamion(dineroCamion,bancoElegido):
